@@ -3,17 +3,17 @@ import time
 
 import requests
 
-DOMAIN = "http://localhost:3000"
+DOMAIN = "http://localhost:8000"
 
 
 def _make_request(url: str) -> int:
     start_time = time.perf_counter()
-    requests.get(DOMAIN + "/" + url)
+    requests.get(DOMAIN + "/" + url).raise_for_status()
     return time.perf_counter() - start_time
 
 
 if __name__ == "__main__":
-    endpoints = ["fast", "slow"]
+    endpoints = ["ping" "api/fast", "api/slow"]
 
     while True:
         endpoint = random.choice(endpoints)
